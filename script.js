@@ -1,4 +1,4 @@
-// --- Event 1: mouseenter / mouseleave ---
+// Event 1: mouseenter / mouseleave
 // Triggered when the mouse enters the hoverCard element; changes border color and feedback text.
 const hoverCard = document.getElementById('hoverCard');
 const hoverStatus = document.getElementById('hoverStatus');
@@ -14,7 +14,7 @@ hoverCard.addEventListener('mouseleave', () => {
 });
 
 
-// --- Event 2: keydown ---
+// Event 2: keydown
 // Triggered globally on the window whenever any keyboard key is pressed; outputs key metadata to screen.
 const keyDisplay = document.getElementById('keyDisplay');
 
@@ -23,7 +23,7 @@ window.addEventListener('keydown', (event) => {
 });
 
 
-// --- Event 3: focus & blur ---
+// Event 3: focus & blur
 // Triggered when the text input gains or loses focus; updates interface feedback styling.
 const kioskInput = document.getElementById('kioskInput');
 const inputFeedback = document.getElementById('inputFeedback');
@@ -39,7 +39,7 @@ kioskInput.addEventListener('blur', () => {
 });
 
 
-// --- Event 4: contextmenu ---
+// Event 4: contextmenu
 // Triggered on right-clicking inside the contextCard element; suppresses default menu and logs custom event.
 const contextCard = document.getElementById('contextCard');
 const contextLog = document.getElementById('contextLog');
@@ -50,7 +50,7 @@ contextCard.addEventListener('contextmenu', (event) => {
 });
 
 
-// --- Event 5: click (with runtime removeEventListener requirement) ---
+// Event 5: click (with runtime removeEventListener requirement)
 // Triggered when clicking the action button; tracks counts up to 3 clicks, then permanently removes its own listener.
 const actionBtn = document.getElementById('actionBtn');
 const btnLog = document.getElementById('btnLog');
