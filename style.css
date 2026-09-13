@@ -176,32 +176,10 @@ textarea:focus {
 
 #kioskForm input {
     flex: 1;
+    min-width: 0;
 }
 
-/* Light theme toggled via the header button (click event) */
-body.light-theme {
-    background-color: #f1f5f9;
-    color: #0f172a;
-}
-
-body.light-theme .kiosk-container {
-    background: #ffffff;
-    border-color: #cbd5e1;
-}
-
-body.light-theme .kiosk-header {
-    background: #e2e8f0;
-    border-color: #cbd5e1;
-}
-
-body.light-theme .card {
-    background: #f8fafc;
-    border-color: #cbd5e1;
-}
-
-body.light-theme .display-box,
-body.light-theme textarea,
-body.light-theme input[type="text"] {
-    background: #ffffff;
-    color: #0f172a;
+#kioskForm .kiosk-btn {
+    flex: 0 0 auto;
+    width: auto;
 }
