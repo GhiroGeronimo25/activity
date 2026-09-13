@@ -9,11 +9,10 @@ pulseBtn.addEventListener('click', () => {
     colorIndex = (colorIndex + 1) % colors.length;
     pulseBtn.style.background = colors[colorIndex];
     pulseBtn.classList.remove('pulse');
-    void pulseBtn.offsetWidth; // restart animation
+    void pulseBtn.offsetWidth;
     pulseBtn.classList.add('pulse');
 });
 
-// Bonus toggle: click also switches the whole kiosk light/dark
 themeBtn.addEventListener('click', () => {
     document.body.classList.toggle('light-theme');
 });
