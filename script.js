@@ -1,5 +1,5 @@
-// Event 1: mouseenter / mouseleave
-// Triggered when the mouse enters the hoverCard element; changes border color and feedback text.
+// Event 1
+// Indicates when mouse is inside the card, changing the text and border color
 const hoverCard = document.getElementById('hoverCard');
 const hoverStatus = document.getElementById('hoverStatus');
 
@@ -14,8 +14,8 @@ hoverCard.addEventListener('mouseleave', () => {
 });
 
 
-// Event 2: keydown
-// Triggered globally on the window whenever any keyboard key is pressed; outputs key metadata to screen.
+// Event 2
+// Indicates when someone input a key in the card
 const keyDisplay = document.getElementById('keyDisplay');
 
 window.addEventListener('keydown', (event) => {
@@ -23,8 +23,8 @@ window.addEventListener('keydown', (event) => {
 });
 
 
-// Event 3: focus & blur
-// Triggered when the text input gains or loses focus; updates interface feedback styling.
+// Event 3
+// Indicates if active/focused or lsot focus when someone makes an input
 const kioskInput = document.getElementById('kioskInput');
 const inputFeedback = document.getElementById('inputFeedback');
 
@@ -39,19 +39,19 @@ kioskInput.addEventListener('blur', () => {
 });
 
 
-// Event 4: contextmenu
-// Triggered on right-clicking inside the contextCard element; suppresses default menu and logs custom event.
+// Event 4
+// Triggered on right-clicking inside the card
 const contextCard = document.getElementById('contextCard');
 const contextLog = document.getElementById('contextLog');
 
 contextCard.addEventListener('contextmenu', (event) => {
-    event.preventDefault(); // Prevents default browser right-click menu
+    event.preventDefault();
     contextLog.textContent = `Custom context menu intercepted at coordinates: X=${event.clientX}, Y=${event.clientY}`;
 });
 
 
-// Event 5: click (with runtime removeEventListener requirement)
-// Triggered when clicking the action button; tracks counts up to 3 clicks, then permanently removes its own listener.
+// Event 5
+// Removing event listener when clicked 3 times
 const actionBtn = document.getElementById('actionBtn');
 const btnLog = document.getElementById('btnLog');
 let clickCount = 0;
@@ -61,7 +61,6 @@ function handleActionClick() {
     btnLog.textContent = `Clicks registered: ${clickCount}`;
     
     if (clickCount >= 3) {
-        // Requirement: Remove event listener at runtime once threshold is reached
         actionBtn.removeEventListener('click', handleActionClick);
         actionBtn.style.background = '#64748b';
         actionBtn.style.cursor = 'not-allowed';
