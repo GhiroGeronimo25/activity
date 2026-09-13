@@ -111,3 +111,97 @@ input[type="text"]:focus {
 .kiosk-btn:hover {
     background: #2563eb;
 }
+
+.kiosk-btn.pulse {
+    animation: pulse 0.4s ease;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.06); }
+    100% { transform: scale(1); }
+}
+
+.hidden-info {
+    opacity: 0;
+    max-height: 0;
+    overflow: hidden;
+    transition: opacity 0.2s ease, max-height 0.2s ease;
+}
+
+.hidden-info.show {
+    opacity: 1;
+    max-height: 40px;
+}
+
+textarea {
+    width: 100%;
+    min-height: 80px;
+    padding: 10px;
+    border-radius: 6px;
+    border: 1px solid #475569;
+    background: #0f172a;
+    color: #fff;
+    outline: none;
+    resize: vertical;
+    font-family: inherit;
+    transition: border-color 0.2s;
+}
+
+textarea:focus {
+    border-color: #38bdf8;
+}
+
+.filter-list {
+    list-style: none;
+    margin-top: 12px;
+}
+
+.filter-list li {
+    padding: 8px 10px;
+    border-bottom: 1px solid #334155;
+    font-size: 0.95rem;
+    color: #e2e8f0;
+}
+
+.filter-list li:last-child {
+    border-bottom: none;
+}
+
+#kioskForm {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+#kioskForm input {
+    flex: 1;
+}
+
+/* Light theme toggled via the header button (click event) */
+body.light-theme {
+    background-color: #f1f5f9;
+    color: #0f172a;
+}
+
+body.light-theme .kiosk-container {
+    background: #ffffff;
+    border-color: #cbd5e1;
+}
+
+body.light-theme .kiosk-header {
+    background: #e2e8f0;
+    border-color: #cbd5e1;
+}
+
+body.light-theme .card {
+    background: #f8fafc;
+    border-color: #cbd5e1;
+}
+
+body.light-theme .display-box,
+body.light-theme textarea,
+body.light-theme input[type="text"] {
+    background: #ffffff;
+    color: #0f172a;
+}
