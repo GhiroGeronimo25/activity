@@ -12,7 +12,7 @@
         <!-- Header & Status -->
         <header class="kiosk-header">
             <h1>OmniKiosk Terminal</h1>
-            <button id="themeBtn" class="badge online">Toggle Theme</button>
+            <div id="statusBadge" class="badge online">System Online</div>
         </header>
 
         <!-- Main Interactive Workspace -->
@@ -52,14 +52,21 @@
                 </ul>
             </section>
 
-            <!-- Event 5: submit -->
-            <section class="card" id="formCard">
-                <h3>Registration Form</h3>
-                <form id="kioskForm">
-                    <input type="text" id="usernameInput" placeholder="Enter username">
-                    <button type="submit" class="kiosk-btn">Submit</button>
-                </form>
-                <p id="formFeedback" class="hint-text">No submission yet.</p>
+            <!-- Event 5: scroll -->
+            <section class="card" id="scrollCard">
+                <h3>Scroll Progress</h3>
+                <p>Scroll inside the box below.</p>
+                <div class="progress-track">
+                    <div id="progressFill" class="progress-fill"></div>
+                </div>
+                <div id="scrollBox" class="scroll-box">
+                    <p>Keep scrolling down to reveal a hidden message...</p>
+                    <p>Almost there...</p>
+                    <p>A little more...</p>
+                    <p>Getting closer...</p>
+                    <p>Just a bit further...</p>
+                    <p id="scrollReveal" class="hint-text fade-in">🎉 You reached the bottom!</p>
+                </div>
             </section>
         </main>
     </div>
