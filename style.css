@@ -168,18 +168,43 @@ textarea:focus {
     border-bottom: none;
 }
 
-#kioskForm {
-    display: flex;
-    gap: 10px;
-    margin-top: 10px;
+.progress-track {
+    width: 100%;
+    height: 8px;
+    background: #334155;
+    border-radius: 4px;
+    margin-top: 12px;
+    overflow: hidden;
 }
 
-#kioskForm input {
-    flex: 1;
-    min-width: 0;
+.progress-fill {
+    height: 100%;
+    width: 0%;
+    background: #38bdf8;
+    transition: width 0.1s linear;
 }
 
-#kioskForm .kiosk-btn {
-    flex: 0 0 auto;
-    width: auto;
+.scroll-box {
+    margin-top: 12px;
+    height: 120px;
+    overflow-y: auto;
+    padding: 10px;
+    background: #1e293b;
+    border: 1px dashed #475569;
+    border-radius: 6px;
+}
+
+.scroll-box p {
+    padding: 14px 0;
+    color: #cbd5e1;
+    font-size: 0.9rem;
+}
+
+.fade-in {
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+.fade-in.show {
+    opacity: 1;
 }
