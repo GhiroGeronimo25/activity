@@ -1,72 +1,95 @@
-// Event 1 mouseover / mouseout
-// Indicates when mouse is inside the card, changing the text and border color
+// Event 1: click
+// Button pulses and cycles through theme colors each click
+const pulseBtn = document.getElementById('pulseBtn');
+const themeBtn = document.getElementById('themeBtn');
+const colors = ['#3b82f6', '#22c55e', '#f97316', '#ec4899'];
+let colorIndex = 0;
+
+pulseBtn.addEventListener('click', () => {
+    colorIndex = (colorIndex + 1) % colors.length;
+    pulseBtn.style.background = colors[colorIndex];
+    pulseBtn.classList.remove('pulse');
+    void pulseBtn.offsetWidth; // restart animation
+    pulseBtn.classList.add('pulse');
+});
+
+// Bonus toggle: click also switches the whole kiosk light/dark
+themeBtn.addEventListener('click', () => {
+    document.body.classList.toggle('light-theme');
+});
+
+
+// Event 2: mouseover / mouseout
+// Reveals hidden info while the cursor is inside the card
 const hoverCard = document.getElementById('hoverCard');
 const hoverStatus = document.getElementById('hoverStatus');
+const hiddenInfo = document.getElementById('hiddenInfo');
 
 hoverCard.addEventListener('mouseover', () => {
     hoverCard.style.borderColor = '#38bdf8';
     hoverStatus.textContent = 'Cursor is inside the card.';
+    hiddenInfo.classList.add('show');
 });
 
 hoverCard.addEventListener('mouseout', () => {
     hoverCard.style.borderColor = '#334155';
-    hoverStatus.textContent = 'Cursor left the card.';
+    hoverStatus.textContent = 'Hover your cursor over this card.';
+    hiddenInfo.classList.remove('show');
 });
 
 
-// Event 2 keydown
-// Indicates when someone input a key in the card
-const keyDisplay = document.getElementById('keyDisplay');
+// Event 3: keydown / keyup
+// Live character counter while typing in the textarea
+const counterInput = document.getElementById('counterInput');
+const charCount = document.getElementById('charCount');
+const maxChars = counterInput.maxLength;
 
-window.addEventListener('keydown', (event) => {
-    keyDisplay.textContent = `Key: "${event.key}" | Code: ${event.code}`;
+counterInput.addEventListener('keydown', () => {
+    charCount.style.color = '#38bdf8';
+});
+
+counterInput.addEventListener('keyup', () => {
+    const length = counterInput.value.length;
+    charCount.textContent = `${length} / ${maxChars} characters`;
+    charCount.style.color = length >= maxChars ? '#f87171' : '#94a3b8';
 });
 
 
-// Event 3
-// Indicates if active/focused or lost focus when someone makes an input
-const kioskInput = document.getElementById('kioskInput');
-const inputFeedback = document.getElementById('inputFeedback');
+// Event 4: input
+// Live search filter over the fruit list as the user types
+const searchInput = document.getElementById('searchInput');
+const fruitList = document.getElementById('fruitList');
+const fruitItems = fruitList.querySelectorAll('li');
 
-kioskInput.addEventListener('focus', () => {
-    inputFeedback.textContent = 'Input field is active and focused.';
-    inputFeedback.style.color = '#34d399';
+searchInput.addEventListener('input', () => {
+    const query = searchInput.value.trim().toLowerCase();
+    fruitItems.forEach((item) => {
+        const matches = item.textContent.toLowerCase().includes(query);
+        item.style.display = matches ? '' : 'none';
+    });
 });
 
-kioskInput.addEventListener('blur', () => {
-    inputFeedback.textContent = 'Input field lost focus.';
-    inputFeedback.style.color = '#94a3b8';
-});
 
+// Event 5: submit
+// Validates the form and shows a message without reloading the page
+const kioskForm = document.getElementById('kioskForm');
+const usernameInput = document.getElementById('usernameInput');
+const formFeedback = document.getElementById('formFeedback');
 
-// Event 4 context menu
-// Triggered on right-clicking inside the card
-const contextCard = document.getElementById('contextCard');
-const contextLog = document.getElementById('contextLog');
-
-contextCard.addEventListener('contextmenu', (event) => {
+kioskForm.addEventListener('submit', (event) => {
     event.preventDefault();
-    contextLog.textContent = `Custom context menu intercepted at coordinates: X=${event.clientX}, Y=${event.clientY}`;
-});
 
+    const value = usernameInput.value.trim();
 
-// Event 5 click
-// Removing event listener when clicked 3 times
-const actionBtn = document.getElementById('actionBtn');
-const btnLog = document.getElementById('btnLog');
-let clickCount = 0;
-
-function handleActionClick() {
-    clickCount++;
-    btnLog.textContent = `Clicks registered: ${clickCount}`;
-    
-    if (clickCount >= 3) {
-        actionBtn.removeEventListener('click', handleActionClick);
-        actionBtn.style.background = '#64748b';
-        actionBtn.style.cursor = 'not-allowed';
-        actionBtn.textContent = 'Listener Removed via removeEventListener()';
-        btnLog.textContent = 'Max clicks reached. Event listener has been detached.';
+    if (value.length === 0) {
+        formFeedback.textContent = 'Username cannot be empty.';
+        formFeedback.style.color = '#f87171';
+    } else if (value.length < 3) {
+        formFeedback.textContent = 'Username must be at least 3 characters.';
+        formFeedback.style.color = '#f87171';
+    } else {
+        formFeedback.textContent = `Welcome, ${value}! Registration successful.`;
+        formFeedback.style.color = '#34d399';
+        kioskForm.reset();
     }
-}
-
-actionBtn.addEventListener('click', handleActionClick);
+});
