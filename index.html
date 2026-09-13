@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Event-Driven Interactive Kiosk</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -11,55 +14,87 @@
     <div class="kiosk-container">
         <!-- Header & Status -->
         <header class="kiosk-header">
-            <h1>OmniKiosk Terminal</h1>
-            <div id="statusBadge" class="badge online">System Online</div>
+            <h1>OmniKiosk<span class="cursor">_</span></h1>
+            <div id="statusBadge" class="status-pill online">
+                <span class="status-dot"></span>SYSTEM ONLINE
+            </div>
         </header>
 
         <!-- Main Interactive Workspace -->
         <main class="kiosk-main">
             <!-- Event 1: click -->
             <section class="card" id="clickCard">
-                <h3>Click Animation</h3>
-                <p>Click the button to pulse and change its color.</p>
-                <button id="pulseBtn" class="kiosk-btn">Click Me</button>
+                <div class="card-rail">
+                    <span class="led" id="clickLed"></span>
+                    <h3>Click Animation</h3>
+                    <span class="port">EVT.01 / click</span>
+                </div>
+                <div class="card-body">
+                    <p>Click the button to pulse and change its color.</p>
+                    <button id="pulseBtn" class="kiosk-btn">Click Me</button>
+                </div>
             </section>
 
             <!-- Event 2: mouseover / mouseout -->
             <section class="card" id="hoverCard">
-                <h3>Hover Diagnostics</h3>
-                <p id="hoverStatus">Hover your cursor over this card.</p>
-                <p id="hiddenInfo" class="hint-text hidden-info">Hidden info revealed on hover!</p>
+                <div class="card-rail">
+                    <span class="led" id="hoverLed"></span>
+                    <h3>Hover Diagnostics</h3>
+                    <span class="port">EVT.02 / hover</span>
+                </div>
+                <div class="card-body">
+                    <p id="hoverStatus">Hover your cursor over this card.</p>
+                    <p id="hiddenInfo" class="hint-text hidden-info">Hidden info revealed on hover!</p>
+                </div>
             </section>
 
             <!-- Event 3: keydown / keyup -->
             <section class="card" id="keyCard">
-                <h3>Live Character Counter</h3>
-                <textarea id="counterInput" placeholder="Start typing..." maxlength="120"></textarea>
-                <p id="charCount" class="hint-text">0 / 120 characters</p>
+                <div class="card-rail">
+                    <span class="led" id="keyLed"></span>
+                    <h3>Live Character Counter</h3>
+                    <span class="port">EVT.03 / keydown</span>
+                </div>
+                <div class="card-body">
+                    <textarea id="counterInput" placeholder="Start typing..." maxlength="120"></textarea>
+                    <p id="charCount" class="hint-text">0 / 120 characters</p>
+                </div>
             </section>
 
             <!-- Event 4: input -->
             <section class="card" id="searchCard">
-                <h3>Live Search Filter</h3>
-                <input type="text" id="searchInput" placeholder="Filter fruits...">
-                <ul id="fruitList" class="filter-list">
-                    <li>Apple</li>
-                    <li>Banana</li>
-                    <li>Mango</li>
-                    <li>Grape</li>
-                    <li>Pineapple</li>
-                    <li>Orange</li>
-                </ul>
+                <div class="card-rail">
+                    <span class="led" id="searchLed"></span>
+                    <h3>Live Search Filter</h3>
+                    <span class="port">EVT.04 / input</span>
+                </div>
+                <div class="card-body">
+                    <input type="text" id="searchInput" placeholder="Filter fruits...">
+                    <ul id="fruitList" class="filter-list">
+                        <li>Apple</li>
+                        <li>Banana</li>
+                        <li>Mango</li>
+                        <li>Grape</li>
+                        <li>Pineapple</li>
+                        <li>Orange</li>
+                    </ul>
+                </div>
             </section>
 
             <!-- Event 5: submit -->
             <section class="card" id="formCard">
-                <h3>Registration Form</h3>
-                <form id="kioskForm">
-                    <input type="text" id="usernameInput" placeholder="Enter username">
-                    <button type="submit" class="kiosk-btn">Submit</button>
-                </form>
-                <p id="formFeedback" class="hint-text">No submission yet.</p>
+                <div class="card-rail">
+                    <span class="led" id="formLed"></span>
+                    <h3>Registration Form</h3>
+                    <span class="port">EVT.05 / submit</span>
+                </div>
+                <div class="card-body">
+                    <form id="kioskForm">
+                        <input type="text" id="usernameInput" placeholder="Enter username">
+                        <button type="submit" class="kiosk-btn">Submit</button>
+                    </form>
+                    <p id="formFeedback" class="hint-text">No submission yet.</p>
+                </div>
             </section>
         </main>
     </div>
