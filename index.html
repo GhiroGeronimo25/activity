@@ -12,44 +12,54 @@
         <!-- Header & Status -->
         <header class="kiosk-header">
             <h1>OmniKiosk Terminal</h1>
-            <div id="statusBadge" class="badge online">System Online</div>
+            <button id="themeBtn" class="badge online">Toggle Theme</button>
         </header>
 
         <!-- Main Interactive Workspace -->
         <main class="kiosk-main">
-            <!-- Event 1 mouseover / mouseout -->
+            <!-- Event 1: click -->
+            <section class="card" id="clickCard">
+                <h3>Click Animation</h3>
+                <p>Click the button to pulse and change its color.</p>
+                <button id="pulseBtn" class="kiosk-btn">Click Me</button>
+            </section>
+
+            <!-- Event 2: mouseover / mouseout -->
             <section class="card" id="hoverCard">
                 <h3>Hover Diagnostics</h3>
                 <p id="hoverStatus">Hover your cursor over this card.</p>
+                <p id="hiddenInfo" class="hint-text hidden-info">Hidden info revealed on hover!</p>
             </section>
 
-            <!-- Event 2 keydown -->
+            <!-- Event 3: keydown / keyup -->
             <section class="card" id="keyCard">
-                <h3>Keyboard Input Stream</h3>
-                <p>Press any key while focused on the window:</p>
-                <div id="keyDisplay" class="display-box">Awaiting key...</div>
+                <h3>Live Character Counter</h3>
+                <textarea id="counterInput" placeholder="Start typing..." maxlength="120"></textarea>
+                <p id="charCount" class="hint-text">0 / 120 characters</p>
             </section>
 
-            <!-- Event 3 focus & blur input -->
-            <section class="card">
-                <h3>User Authentication Prompt</h3>
-                <input type="text" id="kioskInput" placeholder="Click to focus input field...">
-                <p id="inputFeedback" class="hint-text">Field is idle.</p>
+            <!-- Event 4: input -->
+            <section class="card" id="searchCard">
+                <h3>Live Search Filter</h3>
+                <input type="text" id="searchInput" placeholder="Filter fruits...">
+                <ul id="fruitList" class="filter-list">
+                    <li>Apple</li>
+                    <li>Banana</li>
+                    <li>Mango</li>
+                    <li>Grape</li>
+                    <li>Pineapple</li>
+                    <li>Orange</li>
+                </ul>
             </section>
 
-            <!-- Feature 4: Context Menu (Right-Click) Override -->
-            <section class="card" id="contextCard">
-                <h3>Context Interceptor</h3>
-                <p>Right-click (contextmenu) anywhere inside this box.</p>
-                <p id="contextLog" class="hint-text">No custom action triggered yet.</p>
-            </section>
-
-            <!-- Event 5 dynamic event removal -->
-            <section class="card" id="controlCard">
-                <h3>Runtime Event Controller</h3>
-                <p>Click the button below to toggle a live click listener or remove it permanently via code.</p>
-                <button id="actionBtn" class="kiosk-btn">Click Me (Active)</button>
-                <p id="btnLog" class="hint-text">Clicks registered: 0</p>
+            <!-- Event 5: submit -->
+            <section class="card" id="formCard">
+                <h3>Registration Form</h3>
+                <form id="kioskForm">
+                    <input type="text" id="usernameInput" placeholder="Enter username">
+                    <button type="submit" class="kiosk-btn">Submit</button>
+                </form>
+                <p id="formFeedback" class="hint-text">No submission yet.</p>
             </section>
         </main>
     </div>
