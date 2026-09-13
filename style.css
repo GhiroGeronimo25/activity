@@ -1,125 +1,220 @@
+:root {
+    --bg-void: #05070a;
+    --bg-panel: #0b0f14;
+    --bg-recess: #060a0d;
+    --line: #1c2530;
+    --line-bright: #2a3542;
+    --amber: #ffb454;
+    --amber-dim: #8a6a3c;
+    --text-main: #dbe2e8;
+    --text-dim: #6b7785;
+    --ok: #4ade80;
+    --err: #ff6b6b;
+}
+
 * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 }
 
 body {
-    background-color: #0f172a;
-    color: #f8fafc;
+    font-family: 'JetBrains Mono', ui-monospace, 'SF Mono', Menlo, monospace;
+    background-color: var(--bg-void);
+    background-image:
+        linear-gradient(var(--line) 1px, transparent 1px),
+        linear-gradient(90deg, var(--line) 1px, transparent 1px);
+    background-size: 28px 28px;
+    background-position: center;
+    color: var(--text-main);
     min-height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
+    padding: 40px 20px;
 }
 
 .kiosk-container {
-    width: 90%;
-    max-width: 900px;
-    background: #1e293b;
-    border: 1px solid #334155;
-    border-radius: 16px;
-    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5);
-    overflow: hidden;
+    width: 100%;
+    max-width: 960px;
+    background: var(--bg-panel);
+    border: 1px solid var(--line-bright);
+    border-radius: 4px;
+    box-shadow:
+        0 0 0 1px rgba(0, 0, 0, 0.4),
+        0 30px 60px -20px rgba(0, 0, 0, 0.8),
+        inset 0 1px 0 rgba(255, 255, 255, 0.03);
 }
 
 .kiosk-header {
-    background: #0f172a;
-    padding: 20px 30px;
+    background: var(--bg-recess);
+    padding: 22px 28px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-bottom: 1px solid #334155;
+    border-bottom: 1px solid var(--line);
 }
 
-.badge {
-    padding: 6px 12px;
-    border-radius: 20px;
-    font-size: 0.85rem;
-    font-weight: 600;
+.kiosk-header h1 {
+    font-size: 1.4rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    color: var(--text-main);
 }
-.badge.online { background: #065f46; color: #34d399; }
-.badge.offline { background: #7f1d1d; color: #f87171; }
+
+.cursor {
+    color: var(--amber);
+    animation: blink 1.1s step-end infinite;
+}
+
+@keyframes blink {
+    0%, 45% { opacity: 1; }
+    50%, 100% { opacity: 0; }
+}
+
+.status-pill {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 14px;
+    border: 1px solid var(--line-bright);
+    border-radius: 20px;
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.6px;
+    color: var(--ok);
+    background: rgba(74, 222, 128, 0.06);
+}
+
+.status-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--ok);
+    box-shadow: 0 0 8px var(--ok);
+    animation: pulse-dot 2s ease-in-out infinite;
+}
+
+@keyframes pulse-dot {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+}
 
 .kiosk-main {
-    padding: 30px;
+    padding: 28px;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: 20px;
+    grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+    gap: 18px;
 }
 
 .card {
-    background: #0f172a;
-    border: 1px solid #334155;
-    border-radius: 12px;
-    padding: 20px;
-    transition: transform 0.2s ease, border-color 0.2s ease;
+    background: var(--bg-recess);
+    border: 1px solid var(--line);
+    border-radius: 3px;
+    overflow: hidden;
 }
 
-.card h3 {
-    font-size: 1.1rem;
-    margin-bottom: 10px;
-    color: #38bdf8;
+.card-rail {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    padding: 11px 14px;
+    background: var(--bg-panel);
+    border-bottom: 1px solid var(--line);
+}
+
+.card-rail h3 {
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--text-main);
+    flex: 1;
+}
+
+.port {
+    font-size: 0.65rem;
+    color: var(--text-dim);
+    letter-spacing: 0.3px;
+}
+
+.led {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--line-bright);
+    flex-shrink: 0;
+    transition: background 0.15s ease, box-shadow 0.15s ease;
+}
+
+.led.active {
+    background: var(--amber);
+    box-shadow: 0 0 7px var(--amber);
+}
+
+.led.ok {
+    background: var(--ok);
+    box-shadow: 0 0 7px var(--ok);
+}
+
+.led.err {
+    background: var(--err);
+    box-shadow: 0 0 7px var(--err);
+}
+
+.card-body {
+    padding: 16px;
+}
+
+.card-body p {
+    font-size: 0.8rem;
+    color: var(--text-dim);
+    line-height: 1.5;
 }
 
 .display-box {
-    background: #1e293b;
-    border: 1px dashed #475569;
+    background: var(--bg-panel);
+    border: 1px dashed var(--line-bright);
     padding: 10px;
     margin-top: 10px;
     text-align: center;
-    font-family: monospace;
-    font-size: 1.1rem;
-    color: #cbd5e1;
-    border-radius: 6px;
+    font-size: 0.9rem;
+    color: var(--text-main);
+    border-radius: 3px;
 }
 
-input[type="text"] {
+input[type="text"],
+textarea {
     width: 100%;
-    padding: 10px;
-    border-radius: 6px;
-    border: 1px solid #475569;
-    background: #0f172a;
-    color: #fff;
+    padding: 9px 11px;
+    border-radius: 3px;
+    border: 1px solid var(--line-bright);
+    background: var(--bg-void);
+    color: var(--text-main);
     outline: none;
-    transition: border-color 0.2s;
+    font-family: inherit;
+    font-size: 0.85rem;
+    transition: border-color 0.15s ease;
+    margin-top: 10px;
 }
 
-input[type="text"]:focus {
-    border-color: #38bdf8;
+input[type="text"]::placeholder,
+textarea::placeholder {
+    color: var(--text-dim);
+}
+
+input[type="text"]:focus,
+textarea:focus {
+    border-color: var(--amber-dim);
+}
+
+textarea {
+    min-height: 72px;
+    resize: vertical;
 }
 
 .hint-text {
-    font-size: 0.85rem;
-    color: #94a3b8;
+    font-size: 0.72rem;
+    color: var(--text-dim);
     margin-top: 8px;
-}
-
-.kiosk-btn {
-    background: #3b82f6;
-    color: white;
-    border: none;
-    padding: 10px 16px;
-    border-radius: 6px;
-    font-weight: 600;
-    cursor: pointer;
-    width: 100%;
-    transition: background 0.2s;
-}
-
-.kiosk-btn:hover {
-    background: #2563eb;
-}
-
-.kiosk-btn.pulse {
-    animation: pulse 0.4s ease;
-}
-
-@keyframes pulse {
-    0% { transform: scale(1); }
-    50% { transform: scale(1.06); }
-    100% { transform: scale(1); }
 }
 
 .hidden-info {
@@ -134,22 +229,38 @@ input[type="text"]:focus {
     max-height: 40px;
 }
 
-textarea {
-    width: 100%;
-    min-height: 80px;
-    padding: 10px;
-    border-radius: 6px;
-    border: 1px solid #475569;
-    background: #0f172a;
-    color: #fff;
-    outline: none;
-    resize: vertical;
+.kiosk-btn {
+    background: transparent;
+    color: var(--amber);
+    border: 1px solid var(--amber-dim);
+    padding: 9px 16px;
+    border-radius: 3px;
     font-family: inherit;
-    transition: border-color 0.2s;
+    font-weight: 600;
+    font-size: 0.8rem;
+    letter-spacing: 0.3px;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: background 0.12s ease, box-shadow 0.08s ease, transform 0.08s ease;
 }
 
-textarea:focus {
-    border-color: #38bdf8;
+.kiosk-btn:hover {
+    background: rgba(255, 180, 84, 0.08);
+}
+
+.kiosk-btn:active {
+    transform: translateY(1px);
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.4);
+}
+
+.kiosk-btn.pulse {
+    animation: pulse-btn 0.35s ease;
+}
+
+@keyframes pulse-btn {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.04); }
+    100% { transform: scale(1); }
 }
 
 .filter-list {
@@ -158,10 +269,10 @@ textarea:focus {
 }
 
 .filter-list li {
-    padding: 8px 10px;
-    border-bottom: 1px solid #334155;
-    font-size: 0.95rem;
-    color: #e2e8f0;
+    padding: 7px 2px;
+    border-bottom: 1px solid var(--line);
+    font-size: 0.82rem;
+    color: var(--text-main);
 }
 
 .filter-list li:last-child {
@@ -170,8 +281,7 @@ textarea:focus {
 
 #kioskForm {
     display: flex;
-    gap: 10px;
-    margin-top: 10px;
+    gap: 8px;
 }
 
 #kioskForm input {
@@ -181,5 +291,12 @@ textarea:focus {
 
 #kioskForm .kiosk-btn {
     flex: 0 0 auto;
-    width: auto;
+}
+
+@media (max-width: 560px) {
+    .kiosk-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+    }
 }
