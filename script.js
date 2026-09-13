@@ -1,20 +1,20 @@
-// Event 1
+// Event 1 mouseover / mouseout
 // Indicates when mouse is inside the card, changing the text and border color
 const hoverCard = document.getElementById('hoverCard');
 const hoverStatus = document.getElementById('hoverStatus');
 
-hoverCard.addEventListener('mouseenter', () => {
+hoverCard.addEventListener('mouseover', () => {
     hoverCard.style.borderColor = '#38bdf8';
     hoverStatus.textContent = 'Cursor is currently inside the card boundary.';
 });
 
-hoverCard.addEventListener('mouseleave', () => {
+hoverCard.addEventListener('mouseout', () => {
     hoverCard.style.borderColor = '#334155';
     hoverStatus.textContent = 'Cursor left the card boundary.';
 });
 
 
-// Event 2
+// Event 2 keydown
 // Indicates when someone input a key in the card
 const keyDisplay = document.getElementById('keyDisplay');
 
@@ -50,7 +50,7 @@ contextCard.addEventListener('contextmenu', (event) => {
 });
 
 
-// Event 5
+// Event 5 click
 // Removing event listener when clicked 3 times
 const actionBtn = document.getElementById('actionBtn');
 const btnLog = document.getElementById('btnLog');
