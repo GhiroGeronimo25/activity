@@ -1,7 +1,6 @@
 // Event 1: click
-// Button pulses and cycles through theme colors each click
+// Button pulses and cycles through colors each click
 const pulseBtn = document.getElementById('pulseBtn');
-const themeBtn = document.getElementById('themeBtn');
 const colors = ['#3b82f6', '#22c55e', '#f97316', '#ec4899'];
 let colorIndex = 0;
 
@@ -9,12 +8,8 @@ pulseBtn.addEventListener('click', () => {
     colorIndex = (colorIndex + 1) % colors.length;
     pulseBtn.style.background = colors[colorIndex];
     pulseBtn.classList.remove('pulse');
-    void pulseBtn.offsetWidth;
+    void pulseBtn.offsetWidth; // restart animation
     pulseBtn.classList.add('pulse');
-});
-
-themeBtn.addEventListener('click', () => {
-    document.body.classList.toggle('light-theme');
 });
 
 
