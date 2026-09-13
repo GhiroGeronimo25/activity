@@ -64,20 +64,26 @@ searchInput.addEventListener('input', () => {
 });
 
 
-// Event 5: scroll
-// Fills a progress bar and reveals a hidden message as the box is scrolled
-const scrollBox = document.getElementById('scrollBox');
-const progressFill = document.getElementById('progressFill');
-const scrollReveal = document.getElementById('scrollReveal');
+// Event 5: submit
+// Validates the form and shows a message without reloading the page
+const kioskForm = document.getElementById('kioskForm');
+const usernameInput = document.getElementById('usernameInput');
+const formFeedback = document.getElementById('formFeedback');
 
-scrollBox.addEventListener('scroll', () => {
-    const maxScroll = scrollBox.scrollHeight - scrollBox.clientHeight;
-    const percent = maxScroll > 0 ? (scrollBox.scrollTop / maxScroll) * 100 : 0;
-    progressFill.style.width = `${percent}%`;
+kioskForm.addEventListener('submit', (event) => {
+    event.preventDefault();
 
-    if (percent >= 95) {
-        scrollReveal.classList.add('show');
+    const value = usernameInput.value.trim();
+
+    if (value.length === 0) {
+        formFeedback.textContent = 'Username cannot be empty.';
+        formFeedback.style.color = '#f87171';
+    } else if (value.length < 3) {
+        formFeedback.textContent = 'Username must be at least 3 characters.';
+        formFeedback.style.color = '#f87171';
     } else {
-        scrollReveal.classList.remove('show');
+        formFeedback.textContent = `Welcome, ${value}! Registration successful.`;
+        formFeedback.style.color = '#34d399';
+        kioskForm.reset();
     }
 });
