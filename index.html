@@ -17,20 +17,20 @@
 
         <!-- Main Interactive Workspace -->
         <main class="kiosk-main">
-            <!-- Feature 1: Mouse Over/Out Hover Tracker -->
+            <!-- Event 1 mouseover / mouseout -->
             <section class="card" id="hoverCard">
                 <h3>Hover Diagnostics</h3>
                 <p id="hoverStatus">Hover your cursor over this card.</p>
             </section>
 
-            <!-- Feature 2: Keyboard Keydown & Keyup Tracker -->
+            <!-- Event 2 keydown -->
             <section class="card" id="keyCard">
                 <h3>Keyboard Input Stream</h3>
                 <p>Press any key while focused on the window:</p>
                 <div id="keyDisplay" class="display-box">Awaiting key...</div>
             </section>
 
-            <!-- Feature 3: Focus & Blur Input Feedback -->
+            <!-- Event 3 focus & blur input -->
             <section class="card">
                 <h3>User Authentication Prompt</h3>
                 <input type="text" id="kioskInput" placeholder="Click to focus input field...">
@@ -44,7 +44,7 @@
                 <p id="contextLog" class="hint-text">No custom action triggered yet.</p>
             </section>
 
-            <!-- Feature 5: Dynamic Event Removal Toggle -->
+            <!-- Event 5 dynamic event removal -->
             <section class="card" id="controlCard">
                 <h3>Runtime Event Controller</h3>
                 <p>Click the button below to toggle a live click listener or remove it permanently via code.</p>
