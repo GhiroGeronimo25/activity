@@ -5,12 +5,12 @@ const hoverStatus = document.getElementById('hoverStatus');
 
 hoverCard.addEventListener('mouseover', () => {
     hoverCard.style.borderColor = '#38bdf8';
-    hoverStatus.textContent = 'Cursor is currently inside the card boundary.';
+    hoverStatus.textContent = 'Cursor is inside the card.';
 });
 
 hoverCard.addEventListener('mouseout', () => {
     hoverCard.style.borderColor = '#334155';
-    hoverStatus.textContent = 'Cursor left the card boundary.';
+    hoverStatus.textContent = 'Cursor left the card.';
 });
 
 
@@ -24,7 +24,7 @@ window.addEventListener('keydown', (event) => {
 
 
 // Event 3
-// Indicates if active/focused or lsot focus when someone makes an input
+// Indicates if active/focused or lost focus when someone makes an input
 const kioskInput = document.getElementById('kioskInput');
 const inputFeedback = document.getElementById('inputFeedback');
 
@@ -39,7 +39,7 @@ kioskInput.addEventListener('blur', () => {
 });
 
 
-// Event 4
+// Event 4 context menu
 // Triggered on right-clicking inside the card
 const contextCard = document.getElementById('contextCard');
 const contextLog = document.getElementById('contextLog');
